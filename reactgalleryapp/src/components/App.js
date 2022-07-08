@@ -7,12 +7,21 @@ import {
 import Nav from './Nav';
 import Photo from './Photo';
 import NotFound from './NotFound';
+import SearchForm from './SearchForm';
 
 const App = () => {
   return (
-    <Nav />,
-    <Photo />,
-    <NotFound />
+      <React.Fragment> 
+        <BrowserRouter>
+          <SearchForm />
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={Photo} />
+            <Route path="/notfound" component={NotFound} />
+          </Switch>
+        </BrowserRouter>
+      </React.Fragment>
+      
   );
 }
 
