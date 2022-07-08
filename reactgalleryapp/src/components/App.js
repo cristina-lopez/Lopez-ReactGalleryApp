@@ -9,15 +9,11 @@ import Photo from './Photo';
 import NotFound from './NotFound';
 
 const App = () => {
-    <BrowserRouter>
-      <Nav />
-      <Switch>
-        <Route path="/" component={Photo} />
-        <Route path="/notfound" component={NotFound} />
-      </Switch>
-    </BrowserRouter>
-
-
+  return (
+    <Nav />,
+    <Photo />,
+    <NotFound />
+  );
 }
 
 export default App;
