@@ -8,6 +8,7 @@ import Nav from './Nav';
 import Photo from './Photo';
 import NotFound from './NotFound';
 import SearchForm from './SearchForm';
+import PhotoContainer from './PhotoContainer';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Nav />
           <Switch>
             <Route exact path="/" component={Photo} />
+            <Route path="/:topic" component={PhotoContainer} />
             <Route path="/notfound" component={NotFound} />
           </Switch>
         </BrowserRouter>
