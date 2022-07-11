@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Nav';
-import Photo from './Photo';
 import NotFound from './NotFound';
 import SearchForm from './SearchForm';
 import PhotoContainer from './PhotoContainer';
@@ -25,24 +24,26 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.performSearch('cats');
-    this.performSearch('minions');
-    this.performSearch('games');
-      
+    this.performSearch();
+    //this.performSearch('cats');
+    //this.performSearch('minions');
+    //this.performSearch('games'); 
+
   }
 
-  performSearch(query) {
+  performSearch = (query = 'cats') => {
     axios(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
-        if (query === 'cats') {
+        this.setState({cats: response.data.photos.photo});
+        /* if (query === 'cats') {
           this.setState( {cats: response.data.photos.photo} );
         } else if (query === 'minions') {
           this.setState( {minions: response.data.photos.photo} );
         } else if (query === 'games') {
           this.setState( {games: response.data.photos.photo} );
-        } else {
+        } else if (query !== 'notfound') {
           this.setState( {searchQuery: response.data.photos.photo} );
-        }
+        } */
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -53,16 +54,21 @@ export default class App extends Component {
     return (
       <React.Fragment> 
         <BrowserRouter>
-          <SearchForm />
+          <SearchForm onSearch={this.performSearch}/>
           <Nav />
           <Switch>
-            <Route exact path="/" component={Photo} />
-            <Route path="/:topic" component={PhotoContainer} />
-            <Route path="/notfound" component={NotFound} />
+            <Route exact path="/" render={() => <PhotoContainer data={this.state.cats}/>} /> {/* Need to redirect this to cats*/}
+            <Route path="/minions" render={() => <PhotoContainer data={this.state.minions}/>} />
+            <Route path="/games" render={() => <PhotoContainer data={this.state.games}/>} />
+            <Route path="/:topic" render={() => {
+
+              <PhotoContainer data={ this.state.searchQuery }/>} 
+            }/>
+            {/* <Route path="/:topic" component={PhotoContainer} /> */}
+            <Route exact path="/notfound" render={() => <NotFound />} />
           </Switch>
         </BrowserRouter>
       </React.Fragment>
     );
   }
-
 }
