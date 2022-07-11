@@ -2,7 +2,6 @@ import React from 'react';
 import Photo from './Photo'
 import NotFound from './NotFound';
 
-// needs to be stateful // photos needs to be in state
 const PhotoContainer =(props) => {
 
     const results = props.data;
@@ -18,7 +17,6 @@ const PhotoContainer =(props) => {
     } else {
         photos = <NotFound />
     }
-    
     
     return (
         <div className="photo-container">

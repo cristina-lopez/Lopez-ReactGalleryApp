@@ -16,11 +16,11 @@ class SearchForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let searchTopic = this.topic.value;
+        let searchTopic = this.topic.value; //or input.value?
         this.props.onSearch(searchTopic);
         e.currentTarget.reset();
-        let path = `${searchTopic}`;
-        this.props.history.push(path);
+        //let path = `/${searchTopic}`;
+        this.props.history.push(`/${searchTopic}`);
 
     }
 
