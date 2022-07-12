@@ -14,7 +14,6 @@ class Nav extends Component {
         let buttonClicked = e.target.innerText.toLowerCase();
         this.props.onClick(buttonClicked);
         this.setState({button: buttonClicked});
-        this.props.history.push(`/search/${buttonClicked}`);
     }
 
     render() {

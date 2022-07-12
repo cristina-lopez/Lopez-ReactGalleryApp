@@ -20,6 +20,7 @@ export default class App extends Component {
       cats: [],
       minions: [],
       games: [],
+      query: '',
       loading: true
     }; 
   } 
@@ -28,6 +29,7 @@ export default class App extends Component {
     this.performSearch('cats');
     this.performSearch('minions');
     this.performSearch('games'); 
+    this.performSearch();
   }
 
   performSearch = (query = 'cats') => {
@@ -36,21 +38,25 @@ export default class App extends Component {
          if (query === 'cats') {
           this.setState({
             cats: response.data.photos.photo,
+            query: 'cats',
             loading: false
           });
         } else if (query === 'minions') {
           this.setState({
             minions: response.data.photos.photo,
+            query: 'minions',
             loading: false
           });
         } else if (query === 'games') {
           this.setState({
             games: response.data.photos.photo,
+            query: 'games',
             loading: false
           });
         } else {
           this.setState({
             data: response.data.photos.photo,
+            query: query,
             loading: false
           });
         } 
@@ -67,32 +73,48 @@ export default class App extends Component {
           <SearchForm onSearch={this.performSearch}/>
           <Nav onClick={this.performSearch}/>
           
-          <Switch>
-{/*                {(this.state.loading) 
-                ? (<p> Loading... </p> )
-                : <Route exact path="/" render={() => {<Redirect to="/cats" />, <PhotoContainer data={this.state.data}/>} }/> 
-              } */}
-              
-              <Route exact path="/" render={() => <PhotoContainer data={this.state.cats} loading={this.state.loading}/>} /> 
+          <Switch>              
+            <Route exact path="/" render={() => 
+              <PhotoContainer 
+                data={this.state.cats} 
+                loading={this.state.loading} 
+                topic={this.state.query}
+              />
+            }/> 
 
-              <Route path="/cats" render={() => 
-                <PhotoContainer data={this.state.minions} loading={this.state.loading}/>
-              }/>
+            <Route path="/cats" render={() => 
+              <PhotoContainer 
+                data={this.state.cats} 
+                loading={this.state.loading} 
+                topic={this.state.query}
+              />
+            }/>
 
-              <Route path="/minions" render={() => 
-                <PhotoContainer data={this.state.minions} loading={this.state.loading}/>
-              }/>
+            <Route path="/minions" render={() => 
+              <PhotoContainer 
+                data={this.state.minions} 
+                loading={this.state.loading} 
+                topic={this.state.query}
+              />
+            }/>
 
-              <Route path="/games" render={() => 
-                <PhotoContainer data={this.state.games} loading={this.state.loading}/>
-              }/>
+            <Route path="/games" render={() => 
+              <PhotoContainer 
+                data={this.state.games} 
+                loading={this.state.loading} 
+                topic={this.state.query}
+              />
+            }/>
 
-              <Route path="/search/:topic" render={() => 
-                <PhotoContainer data={this.state.data} loading={this.state.loading}/>
-              } />
+            <Route path="/search/:topic" render={() => 
+              <PhotoContainer 
+                data={this.state.data} 
+                loading={this.state.loading} 
+                topic={this.state.query}
+              />
+            }/>
 
-              <Route path="*" component={NotFound} /> 
-
+            <Route path="*" component={NotFound} /> 
           </Switch>
         </BrowserRouter>
       </React.Fragment>

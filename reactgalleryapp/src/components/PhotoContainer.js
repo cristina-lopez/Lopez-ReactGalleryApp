@@ -5,6 +5,7 @@ import NoSearchResults from './NoSearchResults';
 const PhotoContainer =(props) => {
 
     const results = props.data;
+    console.log(results);
     let photos;
 
     if (results.length > 0) {
@@ -25,8 +26,9 @@ const PhotoContainer =(props) => {
     }
     
     return (
+        
         <div className="photo-container">
-            <h2> Results </h2>
+            <h2> Results for: {props.topic}</h2>
             <ul>
                 {photos} 
             </ul>
