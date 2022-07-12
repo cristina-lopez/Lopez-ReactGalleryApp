@@ -19,7 +19,7 @@ const PhotoContainer =(props) => {
         return (
             <Route exact path="/notfound" render={() => 
                 <Redirect to="/notfound" />}
-             />
+            />
         );
     }
     

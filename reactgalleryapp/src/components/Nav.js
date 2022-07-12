@@ -19,14 +19,14 @@ class Nav extends Component {
         this.setState({button: buttonClicked});
         this.props.history.push(`/search/${buttonClicked}`);
     }
-
+    // onClick={this.handleClick}
     render() {
     return (
         <nav className="main-nav">
             <ul>
-                <li><NavLink exact to="/search/cats" onClick={this.handleClick}>Cats</NavLink></li>
-                <li><NavLink to='/search/minions' onClick={this.handleClick}>Minions</NavLink></li>
-                <li><NavLink to='/search/games' onClick={this.handleClick}>Games</NavLink></li>
+                <li><NavLink to="/cats" onClick={this.handleClick}>Cats</NavLink></li>
+                <li><NavLink to='/minions' onClick={this.handleClick}>Minions</NavLink></li>
+                <li><NavLink to='/games' onClick={this.handleClick}>Games</NavLink></li>
             </ul>
         </nav>
     );

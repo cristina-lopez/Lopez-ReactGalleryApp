@@ -76,13 +76,17 @@ export default class App extends Component {
                 : <Route exact path="/" render={() => <PhotoContainer data={this.state.data}/>} /> 
               } */}
               
-              <Route path="/search/cats" render={() => <PhotoContainer data={this.state.cats}/>} /> 
+              <Route exact path="/" render={() => <PhotoContainer data={this.state.cats}/>} /> 
 
-              <Route path="/search/minions" render={() => 
+              <Route path="/cats" render={() => 
                 <PhotoContainer data={this.state.minions}/>
               }/>
 
-              <Route path="/search/games" render={() => 
+              <Route path="/minions" render={() => 
+                <PhotoContainer data={this.state.minions}/>
+              }/>
+
+              <Route path="/games" render={() => 
                 <PhotoContainer data={this.state.games}/>
               }/>
 
