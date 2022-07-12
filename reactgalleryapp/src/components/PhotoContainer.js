@@ -17,9 +17,10 @@ const PhotoContainer =(props) => {
         });
     } else {
         return (
-            <Route exact path="/notfound" render={() => 
+/*             <Route exact path="/notfound" render={() => 
                 <Redirect to="/notfound" />}
-            />
+            /> */
+            <NotFound />
         );
     }
     

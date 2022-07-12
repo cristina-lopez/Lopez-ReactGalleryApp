@@ -90,20 +90,13 @@ export default class App extends Component {
                 <PhotoContainer data={this.state.games}/>
               }/>
 
-              <Route path="/notfound" render={() => {
-                <div className="photo-container">
-                  <h2> Results </h2>
-                  <ul>
-                    <NotFound /> 
-                  </ul>
-                </div>
-              } } />
-
               <Route path="/search/:topic" render={() => 
                 <PhotoContainer data={this.state.data}/>
               } />
 
-              
+              <Route  path="*" render={() => {
+                    <NotFound /> 
+              } } /> 
 
           </Switch>
         </BrowserRouter>
