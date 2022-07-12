@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+//import {Route, Redirect} from 'react-router-dom';
 
 const NotFound = () => {
     return (
@@ -6,6 +8,7 @@ const NotFound = () => {
                 <h3>No Results Found</h3>
                 <p>Your search did not return any results. Please try again.</p>
             </li>
+
     );
 }
 

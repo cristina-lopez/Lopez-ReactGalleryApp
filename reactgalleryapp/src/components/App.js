@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Nav';
-//import NotFound from './NotFound';
 import SearchForm from './SearchForm';
 import PhotoContainer from './PhotoContainer';
 import NotFound from './NotFound';
@@ -18,22 +17,26 @@ export default class App extends Component {
     super();
     this.state = {
       data: [],
+      cats: [],
+      minions: [],
+      games: [],
       loading: true
-    };
-  }
+    }; 
+  } 
 
   componentDidMount() {
-    this.performSearch();
-
+    this.performSearch('cats');
+    this.performSearch('minions');
+    this.performSearch('games'); 
   }
 
   performSearch = (query = 'cats') => {
     axios(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
-         this.setState({
+         /* this.setState({
           data: response.data.photos.photo,
-          loading: false}); 
-/*         if (query === 'cats') {
+          loading: false});  */
+         if (query === 'cats') {
           this.setState({
             cats: response.data.photos.photo,
             loading: false
@@ -41,7 +44,7 @@ export default class App extends Component {
         } else if (query === 'minions') {
           this.setState({
             minions: response.data.photos.photo,
-            
+            loading: false
           });
         } else if (query === 'games') {
           this.setState({
@@ -50,10 +53,10 @@ export default class App extends Component {
           });
         } else {
           this.setState({
-            searchQuery: response.data.photos.photo,
+            data: response.data.photos.photo,
            
           });
-        }  */
+        } 
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -68,22 +71,20 @@ export default class App extends Component {
           <Nav onClick={this.performSearch}/>
           
           <Switch>
-              {(this.state.loading) 
-                ? <p> Loading... </p> 
+              {/* {(this.state.loading) 
+                ? (<p> Loading... </p> )
                 : <Route exact path="/" render={() => <PhotoContainer data={this.state.data}/>} /> 
-              }
-            
-              <Route path="/minions" render={() => 
-                <PhotoContainer data={this.state.data}/>
+              } */}
+              
+              <Route path="/search/cats" render={() => <PhotoContainer data={this.state.cats}/>} /> 
+
+              <Route path="/search/minions" render={() => 
+                <PhotoContainer data={this.state.minions}/>
               }/>
 
-              <Route path="/games" render={() => 
-                <PhotoContainer data={this.state.data}/>
+              <Route path="/search/games" render={() => 
+                <PhotoContainer data={this.state.games}/>
               }/>
-
-              <Route path="/:topic" render={() => 
-                <PhotoContainer data={this.state.data}/>
-              } />
 
               <Route path="/notfound" render={() => {
                 <div className="photo-container">
@@ -94,17 +95,11 @@ export default class App extends Component {
                 </div>
               } } />
 
+              <Route path="/search/:topic" render={() => 
+                <PhotoContainer data={this.state.data}/>
+              } />
 
-           {/* 
-              <Route path="/games" render={() => 
-                <PhotoContainer data={this.state.games}/>
-              }/>
-            
-              <Route path="/:topic" render={() => {
-                <PhotoContainer data={ this.state.searchQuery }/>} 
-              }/>
-            
-              <Route path="/notfound" render={() => <NotFound />} /> */}
+              
 
           </Switch>
         </BrowserRouter>

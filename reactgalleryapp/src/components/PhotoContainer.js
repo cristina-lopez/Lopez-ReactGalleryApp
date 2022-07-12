@@ -1,6 +1,7 @@
 import React from 'react';
 import Photo from './Photo'
 import NotFound from './NotFound';
+import { Redirect, Route } from 'react-router-dom';
 
 const PhotoContainer =(props) => {
 
@@ -15,15 +16,19 @@ const PhotoContainer =(props) => {
             );
         });
     } else {
-        photos = <NotFound />
+        return (
+            <Route exact path="/notfound" render={() => 
+                <Redirect to="/notfound" />}
+             />
+        );
     }
     
     return (
         <div className="photo-container">
-        <h2> Results </h2>
-        <ul>
-             {photos} 
-        </ul>
+            <h2> Results </h2>
+            <ul>
+                {photos} 
+            </ul>
         </div>
     );
 }
