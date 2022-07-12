@@ -1,7 +1,6 @@
 import React from 'react';
 import Photo from './Photo'
-import NotFound from './NotFound';
-import { Redirect, Route } from 'react-router-dom';
+import NoSearchResults from './NoSearchResults';
 
 const PhotoContainer =(props) => {
 
@@ -15,12 +14,13 @@ const PhotoContainer =(props) => {
                 <Photo url={url} key={photo.id} />
             );
         });
+    } else if (props.loading) {
+        return (
+            <p> Loading... </p>
+        );
     } else {
         return (
-/*             <Route exact path="/notfound" render={() => 
-                <Redirect to="/notfound" />}
-            /> */
-            <NotFound />
+            <NoSearchResults />
         );
     }
     

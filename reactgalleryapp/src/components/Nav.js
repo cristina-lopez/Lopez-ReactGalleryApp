@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 class Nav extends Component {
-    // onclick function, use performSearch
-    // props.onClick 
     constructor() {
         super();
         this.state = {
@@ -14,12 +12,11 @@ class Nav extends Component {
 
     handleClick = (e) => {
         let buttonClicked = e.target.innerText.toLowerCase();
-        console.log(buttonClicked);
         this.props.onClick(buttonClicked);
         this.setState({button: buttonClicked});
         this.props.history.push(`/search/${buttonClicked}`);
     }
-    // onClick={this.handleClick}
+
     render() {
     return (
         <nav className="main-nav">
