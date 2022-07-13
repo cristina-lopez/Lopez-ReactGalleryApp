@@ -2,7 +2,7 @@ import React from 'react';
 import Photo from './Photo'
 import NoSearchResults from './NoSearchResults';
 
-const PhotoContainer =(props) => {
+const PhotoContainer = (props) => {
 
     const results = props.data;
     let photos;

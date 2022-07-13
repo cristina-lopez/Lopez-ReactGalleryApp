@@ -87,7 +87,7 @@ export default class App extends Component {
               <PhotoContainer 
                 data={this.state.cats} 
                 loading={this.state.loading} 
-                topic={this.state.query}
+                topic={"cats"}
               />
             }/>
 
@@ -95,7 +95,7 @@ export default class App extends Component {
               <PhotoContainer 
                 data={this.state.minions} 
                 loading={this.state.loading} 
-                topic={this.state.query}
+                topic={"minions"}
               />
             }/>
 
@@ -103,7 +103,7 @@ export default class App extends Component {
               <PhotoContainer 
                 data={this.state.games} 
                 loading={this.state.loading} 
-                topic={this.state.query}
+                topic={"games"}
               />
             }/>
 
