@@ -5,7 +5,6 @@ import NoSearchResults from './NoSearchResults';
 const PhotoContainer =(props) => {
 
     const results = props.data;
-    console.log(results);
     let photos;
 
     if (results.length > 0) {

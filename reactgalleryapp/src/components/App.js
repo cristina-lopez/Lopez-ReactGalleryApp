@@ -26,10 +26,11 @@ export default class App extends Component {
   } 
 
   componentDidMount() {
+    this.performSearch();
     this.performSearch('cats');
     this.performSearch('minions');
     this.performSearch('games'); 
-    this.performSearch();
+    
   }
 
   performSearch = (query = 'cats') => {
