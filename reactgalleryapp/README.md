@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Image Gallery App
+Project 7 of FSJS Techdegree
+
+In this project, I fetch 12 images from Flicker's API of a default topic. The user can interact with the navigation button or search feature to search for 12 images of another topic.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
